@@ -2,124 +2,206 @@
 <html lang="zh-CN">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>study</title>
-  </head>
-  <body>
-    <div class="todo-app">
-      <div class="title">张秉瀚的Todo APP</div>
-      <div class="todo-from">
-        <input class="todo-input" type="text" placeholder="Add a todo" />
-        <div class="todo-botton">add todo</div>
-      </div>
-
-      <div class="item completed">
-        <div>
-          <input type="checkbox" />
-          <span class="name">吃饭</span>
-        </div>
-
-        <div class="del">删除</div>
-      </div>
-
-      <div class="item">
-        <div>
-          <input type="checkbox" />
-          <span class="name">学习</span>
-        </div>
-
-        <!-- <div class="del">删除</div> -->
-      </div>
-
-      <div class="item">
-        <div>
-          <input type="checkbox" />
-          <span class="name">睡觉</span>
-        </div>
-
-        <div class="del">删除</div>
-      </div>
-    </div>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>祝 彭佩儿 | 生日快乐</title>
     <style>
-      .completed {
-        text-decoration: line-through;
-        opacity: 0.4;
-      }
-      .del {
-        color: red;
-      }
-      .item {
-        display: flex; /* 将盒子水平排列 */
-
-        align-items: center;
-        justify-content: space-between;
-
+      /* 基础重置 */
+      * {
+        margin: 0;
+        padding: 0;
         box-sizing: border-box;
-        width: 80%;
-        height: 50px;
-        margin: 8px auto;
-        padding: 16px;
-        border-radius: 20px;
-        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 20px;
       }
-
-      .todo-botton {
-        width: 100px;
-        height: 52px;
-        border-radius: 0 20px 20px 0;
-        line-height: 52px;
-        text-align: center;
-        background: linear-gradient(
-          to right,
-          rgb(113, 65, 168),
-          rgba(44, 114, 251, 1)
-        );
-        cursor: pointer;
-        user-select: none;
-        color: #ffff;
-      }
-
-      .todo-input {
-        box-sizing: border-box;
-        margin-bottom: 20px;
-        padding-left: 15px;
-        border: 1px solid #dfe1e5;
-        outline: none;
-        width: 60%;
-        height: 50px;
-        border-radius: 20px 0 0 20px;
-      }
-
-      .todo-from {
-        display: flex; /* 将盒子水平排列 */
-        justify-content: center; /* 水平居中Flex项 */
-        margin-top: 20px;
-      }
-
       body {
-        background: linear-gradient(
-          to right,
-          rgb(113, 65, 168),
-          rgba(44, 114, 251, 1)
-        );
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          "Helvetica Neue", Arial, sans-serif;
+        background: linear-gradient(135deg, #fff5f5 0%, #ffecec 100%);
+        color: #d23669;
+        line-height: 1.8;
+        overflow-x: hidden;
       }
 
-      .todo-app {
-        width: 98%;
-        height: 500px;
-        padding: 30px;
-        box-sizing: border-box;
-        background-color: #ffff;
-        border-radius: 5px;
-        margin-top: 40px;
-        margin-left: 1%;
+      /* 页面容器 */
+      .container {
+        max-width: 100%;
+        padding: 20px;
+        position: relative;
       }
 
-      .title {
-        font-size: 30px;
-        font-weight: 700;
+      /* 头部区域 */
+      .header {
         text-align: center;
+        padding: 30px 0;
+        position: relative;
+      }
+      .header h1 {
+        font-size: 2.2rem;
+        margin-bottom: 15px;
+        text-shadow: 1px 1px 3px rgba(210, 54, 105, 0.2);
+      }
+      .header .date {
+        font-size: 1rem;
+        color: #ff7b9c;
+      }
+
+      /* 照片展示区 */
+      .photo-gallery {
+        margin: 25px 0;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(210, 54, 105, 0.1);
+      }
+      .photo-gallery img {
+        width: 100%;
+        display: block;
+        transition: transform 0.3s;
+      }
+      .photo-gallery img:hover {
+        transform: scale(1.02);
+      }
+
+      /* 文字内容区 */
+      .content-section {
+        background: white;
+        border-radius: 12px;
+        padding: 25px;
+        margin: 20px 0;
+        box-shadow: 0 3px 10px rgba(210, 54, 105, 0.08);
+      }
+      .content-section h2 {
+        color: #d23669;
+        margin-bottom: 15px;
+        font-size: 1.5rem;
+        border-left: 4px solid #ff7b9c;
+        padding-left: 10px;
+      }
+      .content-section p {
+        margin-bottom: 15px;
+        text-align: justify;
+      }
+
+      /* 时间轴设计 */
+      .timeline {
+        position: relative;
+        padding-left: 30px;
+        margin: 30px 0;
+      }
+      .timeline::before {
+        content: "";
+        position: absolute;
+        left: 10px;
+        top: 0;
+        height: 100%;
+        width: 2px;
+        background: linear-gradient(to bottom, #ff7b9c, #ffb3c6);
+      }
+      .timeline-item {
+        position: relative;
+        margin-bottom: 25px;
+      }
+      .timeline-item::before {
+        content: "";
+        position: absolute;
+        left: -30px;
+        top: 5px;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: #d23669;
+        border: 2px solid #ff7b9c;
+      }
+      .timeline-date {
+        font-weight: bold;
+        color: #d23669;
+      }
+      .timeline-content {
+        margin-top: 5px;
+      }
+
+      /* 动画效果 */
+      @keyframes float {
+        0% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+        100% {
+          transform: translateY(0px);
+        }
+      }
+      .floating-heart {
+        position: fixed;
+        font-size: 24px;
+        animation: float 3s ease-in-out infinite;
+        opacity: 0.6;
+        z-index: -1;
       }
     </style>
+  </head>
+  <body>
+    <!-- 浮动爱心背景 -->
+    <div class="floating-heart" style="left: 10%; top: 20%">❤️</div>
+    <div class="floating-heart" style="left: 80%; top: 30%">❤️</div>
+    <div class="floating-heart" style="left: 30%; top: 70%">❤️</div>
+
+    <div class="container">
+      <!-- 头部 -->
+      <div class="header">
+        <h1>生日快乐！</h1>
+        <div class="date">2025年6月5日</div>
+      </div>
+
+      <!-- 照片展示 -->
+      <div class="photo-gallery">
+        <img
+          src="096e9e6952738ad05e4c0e61c501d08.jpg"
+          style="width: 500px; height: 600px"
+        />
+      </div>
+
+      <!-- 祝福语 -->
+      <div class="content-section">
+        <h2>致我最爱的你</h2>
+        <p>亲爱的[她的名字]:</p>
+        <p>在这个特别的日子里，我想告诉你...</p>
+        <!-- 这里放入你的祝福文字 -->
+      </div>
+
+      <!-- 更多照片展示 -->
+      <div class="photo-gallery">
+        <img src="your-photo2.jpg" alt="我们的回忆" />
+      </div>
+
+      <!-- 结束语 -->
+      <div class="content-section" style="text-align: center">
+        <h2>永远爱你</h2>
+        <p>未来的每一天，都想和你一起度过</p>
+        <p style="margin-top: 20px">爱你的 [你的名字]</p>
+      </div>
+    </div>
+
+    <script>
+      // 创建更多浮动爱心
+      function createHearts() {
+        const colors = ["#ff7b9c", "#ffb3c6", "#d23669"];
+        for (let i = 0; i < 5; i++) {
+          const heart = document.createElement("div");
+          heart.className = "floating-heart";
+          heart.innerHTML = "❤️";
+          heart.style.left = Math.random() * 90 + "%";
+          heart.style.top = Math.random() * 90 + "%";
+          heart.style.fontSize = Math.random() * 20 + 16 + "px";
+          heart.style.animationDuration = Math.random() * 3 + 2 + "s";
+          heart.style.color = colors[Math.floor(Math.random() * colors.length)];
+          document.body.appendChild(heart);
+        }
+      }
+
+      // 初始化
+      createHearts();
+    </script>
   </body>
 </html>
